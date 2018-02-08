@@ -1,0 +1,21 @@
+Fred::Heyooo I'm on the Chirper
+Barney::Oh hey Fred
+Fred::Want to go grab some Pizza Barney?
+Barney::Ooooh Pizza, I'd love to!
+Wilma::Don't forget what the doctor said!
+Fred::Awww, Hey Barney, want to grab some salad?
+Barney::Salad? Whats that?
+Fred::It's like pizza, but..
+Barney::Good so far.. 
+Fred::Without the cheese
+Barney::Not so bad.
+Fred::Without the bread
+Barney::I'm not liking where this is going
+Fred::Without the toppings
+Barney::So, whats left? the box?
+Fred::Then you add lettuce, and vegetables
+Barney::Fred, you suck, I'm off to drink beer.
+Betty::Actually, Barney.. 
+Barney::Uhoh.
+Fred::Uhoh.
+Wilma::*Chuckle*
