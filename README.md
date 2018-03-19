@@ -112,9 +112,8 @@ You should hopefully see the following:
 6. Open `src/main/java/demo/Chirper.java`
 
     Note that there are some familiar elements here:
-    * Lines 27-29 contain our test user data.
-    * Lines 31-51 contain plain old java objects (POJOs) representing the remote API we'll be calling, and the data structures that will be passed back and forth
-    * Lines 51-65 configure an outbound Http client that will manage http connections and data marshalling
+    * Plain old java objects (POJOs) representing the remote API we'll be calling, and the data structures that will be passed back and forth
+    * An outbound Http client that will manage http connections and data marshalling
 
 7. The `randomChirps` method on lines 67-98 is doing something interesting: it is using reactive programming to read lines from a file! For each line in the file, it then sends out a chirp.
 
