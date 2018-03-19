@@ -120,7 +120,7 @@ public final class RestClient {
         );
         //
         // #9, addFriends
-        // addFriends(user);
+        // addFriends(user,i);
     }
 
     private void addFriends(String user, int i){
