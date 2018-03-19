@@ -9,7 +9,7 @@ public final class ReactiveWorkshop {
         // rc.checkAndCreateUsers();
 
         // #5 in Reactive Events: uncomment the next two lines
-        Chirper crc = new Chirper();
-        crc.randomChirps(); //currently blockingSubscribe, will never return.
+        // Chirper crc = new Chirper();
+        // crc.randomChirps(); //currently blockingSubscribe, will never return.
     }
 }
