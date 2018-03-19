@@ -10,7 +10,7 @@
 
 To make sure we're ready:
 
-        $ mvn -q exec:java
+        $ mvn -q package exec:java
 
 You should hopefully see the following:
 
@@ -99,7 +99,7 @@ You should hopefully see the following:
 
     Let's take a look at that `addFriends` method: nested Observables are not the best plan. Something to fix in the future.
 
-10. Go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveEventSource.md) for an intro to the next step.
+10. Go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveREST.md) to try this again Akka.
 
 ## Reactive Event Source
 
@@ -154,7 +154,7 @@ You should hopefully see the following:
 
     Note the output is slower, and that it just keeps on going (and will do so, until you kill the process with good old **Ctrl-C** )
 
-9. Go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveTransformation.md) for an intro to the next step.
+9. Go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveEventSource.md) to try this again Akka.
 
 References for this exercise:
 
@@ -169,12 +169,47 @@ References for this exercise:
 
 1. Open VS Code
 2. Find the `rxjava2-chirper-client` folder
-3. Open `src/main/java/demo/ReactiveWorkshop.java`
+3. Open `src/main/java/demo/WsClient.java`
+4. Take a look at line 71. This is our starting point, essentially a println for the incoming stream of events.
+5. Now we need a bit of setup. We need to open two terminal windows. In one window, turn on the stream of chirps again:
 
+        $ mvn -q package exec:java@events
 
-When all changes are ready:
+    We'll just leave this running. In the other terminal window, we'll get the websocket going:
 
-        $ mvn -q exec:java@stream
+        $ mvn -q package exec:java@stream
+
+    You should see some initial log noise showing the websocket connection being established, followed by a parade of chirps in the second window that matches what is being emitted in the first. Hooray for streams!!
+
+6. Use ctrl-c to stop the websocket process (the 2nd terminal window). Leave the  other running.
+
+7. Let's go into `src/main/java/demo/WsClient.java` and **comment out** line 71, and **uncomment** the next block (lines 76-81). **Save**
+
+        $ mvn -q package exec:java@stream
+
+    On line 75, there is a `.take(3)`, which limits the number of events this Observable accepts to 3. So while the process doesn't quit, the output stops at 3.
+
+    Also note that the first chirp shown skips quite a few chirps: older chirps are discarded by the filter on line 68.
+
+8. Use ctrl-c to stop the websocket process. Go back to the code, **comment out** lines 76-81, and **uncomment** the next block (lines 83-84).
+
+        $ mvn -q package exec:java@stream
+
+    On line 83, we've used a `.map` operation to transform the text to uppercase.
+
+9. Use ctrl-c to stop the websocket process. Go back to the code, **comment out** lines 83-84, and **uncomment** lines 87-88.
+
+        $ mvn -q package exec:java@stream
+
+    This looks like run-on sentences! The `.buffer` operation on line 87 is converting 3 lines into one line.
+
+9. Use ctrl-c to stop the websocket process. Go back to the code, **comment out** lines 87-88, and **uncomment** lines 96-101.
+
+        $ mvn -q package exec:java@stream
+
+    Hey: we only see numbers now! This is the mother of all transforms: it uses `.map`, `.window`, `.flatMap`, and `.reduce` to produce a rolling average tweet length for the previous 3 tweets. Holy cow, batman!
+
+10. Clean up the running processes, and go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveTransformation.md) to try this again Akka.
 
 
 ## General References for Rx

@@ -33,10 +33,10 @@ public final class WsClient {
     }
 
     private static boolean chirpIsRecent(Chirp e){
-        String timestamp=e.getTimestamp();
-        long time=Long.valueOf( timestamp.substring(0,timestamp.indexOf('.')));
-        long now=Instant.now().toEpochMilli();
-        now-=500; //allow for some latency, as time will have elapsed since msg was sent.
+        String timestamp = e.getTimestamp();
+        long time = Long.valueOf( timestamp.substring(0,timestamp.indexOf('.')));
+        long now = Instant.now().toEpochMilli();
+        now -= 500; //allow for some latency, as time will have elapsed since msg was sent.
         return time >= now;
     }
 
@@ -49,7 +49,6 @@ public final class WsClient {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build();
-
 
         AutoManagedWebSocket rxsocket = new AutoManagedWebSocket(
              new Request.Builder().url("ws://localhost:9000/api/activity/Fred/live").build(),
@@ -68,6 +67,37 @@ public final class WsClient {
             //remove historic messages.
             .filter( WsClient::chirpIsRecent );
 
+        // #4 from Reactive Transformation: display received chirps via subscribe, subscribe receives Chirp instances.
         chirps.subscribe(e -> { System.out.println( e.getUserId() + "::" + e.getMessage() ); } );
+
+        // #7 from Reactive Transformation: comment line above, uncomment lines below
+        //     display 3 chirps. use Chirp.toString to display, note this doesn't exit..
+        // chirps.take(3)
+        //     .subscribe(
+        //         chirp -> System.out.println(chirp),
+        //         Throwable::printStackTrace,
+        //         () -> System.out.println("Done")
+        //     );
+
+        // #6 from Reactive Transformation: uppercase messages? map converts to String, subscribe dumps Strings using System.out.println
+        // chirps.map( e -> e.getUserId() +"::" + e.getMessage().toUpperCase() )
+        //     .subscribe(System.out::println );
+
+        // #7 from Reactive Transformation: sliding window over messages? subscribe gets list of 3 chirps at a time
+        // chirps.buffer(3,1)
+        //     .subscribe(System.out::println);
+
+        // #8 from Reactive Transformation:
+        //     map converts each chirp into a message length
+        //     sliding window over chirp lengths,
+        //     gives observable of each set of lens,
+        //     flatmapsingle then drops that to a single total using reduce.
+        //     then map converts that total into an average by dividing by no of chirps in the window.
+        // int chirpsToCount=3;
+        // chirps.map(e -> e.getMessage().length() )
+        //     .window(chirpsToCount,1)
+        //     .flatMapSingle(lens -> lens.reduce(0, (total,next) -> total + next))
+        //     .map(e -> (e*1.0)/(chirpsToCount*1.0) )
+        //     .subscribe(System.out::println);
     }
 }
