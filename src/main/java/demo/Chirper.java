@@ -68,32 +68,32 @@ public final class Chirper {
         // logging.setLevel(Level.BASIC);
 
         // #8 from Reactive Event Source: uncomment next 7 lines
-        Flowable<String> delay = Flowable.just("")
-            .switchMap(dummy -> {
-                long time=randomTime();
-                return Flowable.timer(time, TimeUnit.MILLISECONDS)
-                    .map(a -> ""+time);
-            })
-            .repeat();
+        // Flowable<String> delay = Flowable.just("")
+        //     .switchMap(dummy -> {
+        //         long time=randomTime();
+        //         return Flowable.timer(time, TimeUnit.MILLISECONDS)
+        //             .map(a -> ""+time);
+        //     })
+        //     .repeat();
 
         Flowable<String> messages = Flowable.using(
                 () -> new BufferedReader(new FileReader("chirps.txt")),
                     reader -> Flowable.fromIterable(() -> reader.lines().iterator()),
                     reader -> reader.close()
-//                );
+                );
         // #8 from Reactive Event Source: comment line above, uncomment lines below
-            )
-            .repeat();
-
-        delay.zipWith(messages, (d, msg) -> ""+d+"::"+msg  )
-            .blockingSubscribe( chirp -> sendChirp(chirp) );
+        //     )
+        //     .repeat();
+        //
+        // delay.zipWith(messages, (d, msg) -> ""+d+"::"+msg  )
+        //     .blockingSubscribe( chirp -> sendChirp(chirp) );
 
         // #8 from Reactive Event Source: comment next 5 lines
-        // messages.zipWith(messages, (d, msg) -> ""+d+"::"+msg  )
-        //     .blockingSubscribe(
-        //         chirp -> sendChirp(chirp),
-        //         throwable -> { throwable.printStackTrace(); }
-        //     );
+        messages.zipWith(messages, (d, msg) -> ""+d+"::"+msg  )
+            .blockingSubscribe(
+                chirp -> sendChirp(chirp),
+                throwable -> { throwable.printStackTrace(); }
+            );
     }
 
     private void sendChirp(Chirp chirp){
