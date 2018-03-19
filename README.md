@@ -33,7 +33,7 @@ You should hopefully see the following:
 
         $ cd ~/rxjava2-chirper-client
         
-  Let's go ahead and run this, you should see what you expect:
+    Let's go ahead and run this, you should see what you expect:
 
         $ mvn -q package exec:java@events
         Ready to go with RxJava!
