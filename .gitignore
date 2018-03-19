@@ -8,6 +8,9 @@
 /.project
 /.settings
 /.factorypath
+/.sts4-cache
+/.vscode
+dependency-reduced-pom.xml
 /bin
 /build
 /src/main/java/META-INF/
