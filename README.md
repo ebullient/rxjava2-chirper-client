@@ -31,7 +31,7 @@ You should hopefully see the following:
 
 6. Observables can have many sources, including arrays! Let's go ahead and run this, you should see what you expect:
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         0: Fred
         1: Barney
@@ -44,7 +44,7 @@ You should hopefully see the following:
 
 7. **Uncomment** lines 88-92 **AND** lines 95-106; **Save**
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         0: Fred
         User not found: retrofit2.adapter.rxjava2.HttpException: HTTP 404 Not Found
@@ -61,11 +61,11 @@ You should hopefully see the following:
 
 8. **Uncomment** lines 117-129 to actually create the user; **Save**
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
 
     Sadly, the create operation doesn't return anything particularly interesting on its own. However, the users should be created now, which means if we run it again, we shouldn't see any 404 output:
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         0: Fred
         Fred::Fred Flatstone::[]
@@ -80,11 +80,11 @@ You should hopefully see the following:
 
 9. Let's now give these user's some friends. **Uncomment** lines 93-94, and 122-123; **Save**.
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
 
     Again, the `addFriends` method doesn't return anything interesting, so let's run the command again:
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         0: Fred
         Fred::Fred Flatstone::[Barney, Wilma]
@@ -117,7 +117,7 @@ You should hopefully see the following:
 
 7. The `randomChirps` method on lines 67-98 is doing something interesting: it is using reactive programming to read lines from a file! For each line in the file, it then sends out a chirp.
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         Sending 1521465766230::Heyooo I'm on the Chirper::Fred
         Sending 1521465766329::Oh hey Fred::Barney
@@ -145,7 +145,7 @@ You should hopefully see the following:
 
 8. For the next step, we will want these chirps to keep on keepin' on. So let's flip the comments around (as indicated in the file) to make things go on forever. **Save**.
 
-        $ mvn -q package exec:java
+        $ mvn -q package exec:java@events
         Ready to go with RxJava!
         Sending 1521466006387::Fred::Heyooo I'm on the Chirper
         Sending 1521466010570::Barney::Oh hey Fred
@@ -167,10 +167,14 @@ References for this exercise:
 
 ## Reactive Transformation
 
+1. Open VS Code
+2. Find the `rxjava2-chirper-client` folder
+3. Open `src/main/java/demo/ReactiveWorkshop.java`
+
 
 When all changes are ready:
 
-        $ mvn -q exec:java
+        $ mvn -q exec:java@stream
 
 
 ## General References for Rx

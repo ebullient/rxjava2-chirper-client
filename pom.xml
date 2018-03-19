@@ -109,9 +109,26 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.2.1</version>
-        <configuration>
-          <mainClass>demo.ReactiveWorkshop</mainClass>
-        </configuration>
+        <executions>
+            <execution>
+                <id>events</id>
+                <goals>
+                    <goal>java</goal>
+                </goals>
+                <configuration>
+                  <mainClass>demo.ReactiveWorkshop</mainClass>
+                </configuration>
+            </execution>
+            <execution>
+                <id>stream</id>
+                <goals>
+                    <goal>java</goal>
+                </goals>
+                <configuration>
+                    <mainClass>demo.WsClient</mainClass>
+                </configuration>
+            </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
