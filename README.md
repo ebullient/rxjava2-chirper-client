@@ -29,7 +29,11 @@ You should hopefully see the following:
     * Lines 31-59 contain plain old java objects (POJOs) representing the remote API we'll be calling, and the data structures that will be passed back and forth
     * Lines 61-73 configure an outbound Http client that will manage http connections and data marshalling
 
-6. Observables can have many sources, including arrays! Let's go ahead and run this, you should see what you expect:
+6. Observables can have many sources, including arrays! 
+
+        $ cd ~/rxjava2-chirper-client
+        
+  Let's go ahead and run this, you should see what you expect:
 
         $ mvn -q package exec:java@events
         Ready to go with RxJava!
