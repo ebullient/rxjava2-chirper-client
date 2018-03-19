@@ -118,6 +118,7 @@ You should hopefully see the following:
 
 7. The `randomChirps` method on lines 67-98 is doing something interesting: it is using reactive programming to read lines from a file! For each line in the file, it then sends out a chirp.
 
+        $ cd ~/rxjava2-chirper-client
         $ mvn -q package exec:java@events
         Ready to go with RxJava!
         Sending 1521465766230::Heyooo I'm on the Chirper::Fred
@@ -174,10 +175,12 @@ References for this exercise:
 4. Take a look at line 71. This is our starting point, essentially a println for the incoming stream of events.
 5. Now we need a bit of setup. We need to open two terminal windows. In one window, turn on the stream of chirps again:
 
+        $ cd ~/rxjava2-chirper-client
         $ mvn -q package exec:java@events
 
     We'll just leave this running. In the other terminal window, we'll get the websocket going:
 
+        $ cd ~/rxjava2-chirper-client
         $ mvn -q package exec:java@stream
 
     You should see some initial log noise showing the websocket connection being established, followed by a parade of chirps in the second window that matches what is being emitted in the first. Hooray for streams!!
