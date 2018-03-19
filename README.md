@@ -156,9 +156,23 @@ You should hopefully see the following:
 
 9. Go back to [the workshop](https://github.com/IBM/reactive-code-workshop/blob/master/ReactiveTransformation.md) for an intro to the next step.
 
+References for this exercise:
+
+* [Rx: Just](http://reactivex.io/documentation/operators/just.html)
+* [Rx: Repeat](http://reactivex.io/documentation/operators/repeat.html)
+* [Rx: Switch](http://reactivex.io/documentation/operators/switch.html)
+* [Rx: Zip](http://reactivex.io/documentation/operators/zip.html)
+* [RxJava's repeat and retry explained](http://blog.danlew.net/2016/01/25/rxjavas-repeatwhen-and-retrywhen-explained/)
+* [Understanding switchMap](https://github.com/mgp/effective-rxjava/blob/master/items/understand-switch-map.md)
+
 ## Reactive Transformation
 
 
 When all changes are ready:
 
         $ mvn -q exec:java
+
+
+## General References for Rx
+
+* [RxJava Walkthrough](https://balamaci.github.io/rxjava-walkthrough)
