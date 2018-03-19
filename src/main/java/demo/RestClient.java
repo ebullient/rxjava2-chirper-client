@@ -85,25 +85,25 @@ public final class RestClient {
             System.out.println(index + ": " + user);
 
             // #7, uncomment the next chunk of lines, except for call to addFriends
-            Observable<UserInfo> ui = userAPI.getUserInfo(user);
-            ui.subscribe(
-                info -> {
-                    //user exists.. nothing to do.
-                    System.out.println( info );
-                    // #9, uncomment to add friends.
-                    addFriends(user, index);
-                },
-                error -> {
-                    //if the error is a 404, user didn't exist.. so create it.
-                    if ( error instanceof HttpException && ((HttpException)error).code()==404 ) {
-                        System.out.println( "User not found: " + error );
-                        createUser(user, index);
-                    }else{
-                        System.out.println(  "Some other error occurred: " + error );
-                        error.printStackTrace();
-                    }
-                }
-            );
+            // Observable<UserInfo> ui = userAPI.getUserInfo(user);
+            // ui.subscribe(
+            //     info -> {
+            //         //user exists.. nothing to do.
+            //         System.out.println( info );
+            //         // #9, uncomment to add friends.
+            //         addFriends(user, index);
+            //     },
+            //     error -> {
+            //         //if the error is a 404, user didn't exist.. so create it.
+            //         if ( error instanceof HttpException && ((HttpException)error).code()==404 ) {
+            //             System.out.println( "User not found: " + error );
+            //             createUser(user, index);
+            //         }else{
+            //             System.out.println(  "Some other error occurred: " + error );
+            //             error.printStackTrace();
+            //         }
+            //     }
+            // );
         });
     }
 
@@ -113,14 +113,14 @@ public final class RestClient {
         u.setName(names[i]);
         u.setUserId(users[i]);
 
-        // // #8 invoke create user api for user.
+        // #8 invoke create user api for user.
         userAPI.createUser(u).subscribe(
             () -> {},
             throwable -> { throwable.printStackTrace(); }
         );
         //
         // #9, addFriends
-        addFriends(user);
+        // addFriends(user);
     }
 
     private void addFriends(String user, int i){

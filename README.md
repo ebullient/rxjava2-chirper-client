@@ -42,7 +42,7 @@ You should hopefully see the following:
 
     Let's uncomment some more lines to attempt adding users
 
-7. Remove the comments on lines 87-91 AND lines 94-105
+7. Remove the comments on lines 88-92 AND lines 95-106
 
         $ mvn -q package exec:java
         Ready to go with RxJava!
@@ -59,7 +59,7 @@ You should hopefully see the following:
 
     Note: The error handling for the `Observable` looks suspiciously similar to the error handling for `Promises`.
 
-8. Uncomment lines 79-118 to actually create the user
+8. Uncomment lines 117-129 to actually create the user
 
         $ mvn -q package exec:java
 
@@ -98,11 +98,6 @@ You should hopefully see the following:
     Friends!
 
     Let's take a look at that `addFriends` method: nested Observables are not the best plan. Perhaps by the end of this lab, you'll have some ideas about how to fix it.
-
-
-When all changes are ready:
-
-        $ mvn -q exec:java
 
 ## Reactive Event Source
 
